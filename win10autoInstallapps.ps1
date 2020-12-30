@@ -34,7 +34,9 @@ $brave.text                      = "Brave Browser"
 $brave.width                     = 150
 $brave.height                    = 30
 $brave.location                  = New-Object System.Drawing.Point(250,19)
-$brave.Font                      = New-Object System.Drawing.Font('Microsoft Sans Serif',12)
+$brave.Font                      = New-Object System.Drawing.Font('Microsoft Sans Serif',12) 
+
+/*can u see this
 
 $steam                           = New-Object system.Windows.Forms.Button
 $steam.text                      = "Steam"
@@ -218,6 +220,13 @@ $everything.height                   = 50
 $everything.location                 = New-Object System.Drawing.Point(250,300)
 $everything.Font                     = New-Object System.Drawing.Font('Microsoft Sans Serif',12)
 
+$bluestacks                          = New-Object system.Windows.Forms.Button
+$bluestacks.text                     = "Blue Stacks"
+$bluestacks.width                    = 150
+$bluestacks.height                   = 30
+$bluestacks.location                 = New-Object System.Drawing.Point(417,300)
+$bluestacks.Font                     = New-Object System.Drawing.Font('Microsoft Sans Serif',12)
+
 $installeverything                          = New-Object system.Windows.Forms.Button
 $installeverything.text                     = "Install every Single One"
 $installeverything.width                    = 150
@@ -228,7 +237,7 @@ $installeverything.Font                     = New-Object System.Drawing.Font('Mi
 
 
 $Form.controls.AddRange(@($Panel1,$Label1,$Panel2,$Label3,$Panel3,$Label4,$Label15,$Panel4,$Label20,$Label21,$Label23,$PictureBox1))
-$Panel1.controls.AddRange(@($installchoco,$brave,$steam,$epic,$adobe,$minecraft,$battle,$discord,$rockstar,$geforce,$Optifine,$Optifine8,$firefox,$7zip,$irfanview,$adobereader,$notepad,$gchrome,$mpc,$vlc,$Backup,$winterminal,$vscode,$foldersize,$listary,$tmx,$openhardware,$everything,$installeverything,$Label2))
+$Panel1.controls.AddRange(@($installchoco,$brave,$steam,$epic,$adobe,$minecraft,$battle,$discord,$rockstar,$geforce,$Optifine,$Optifine8,$firefox,$7zip,$irfanview,$adobereader,$notepad,$gchrome,$mpc,$vlc,$Backup,$winterminal,$vscode,$foldersize,$listary,$tmx,$openhardware,$everything,$bluestacks,$installeverything,$Label2))
 
 $installchoco.Add_Click({ 
     Write-Host "Installing Chocolatey"
@@ -433,6 +442,17 @@ $everything.Add_Click({
 	Invoke-WebRequest -Uri $url -OutFile $outpath
 	Start-Process -Filepath "$PSScriptRoot/Everything-1.4.1.1002.x86-Setup.exe"
 	    $wshell.Popup("everthing is Installed",0,"Done",0x0)	
+})
+
+$bluestacks.Add_Click({ 
+	Write-Host "Installing Blue Stacks"
+	Write-Host "Almost done...."
+	$url = "https://cloud.bluestacks.com/api/getdownloadnow?platform=win&win_version=10&client_uuid=f0293efe-9da7-4a7b-8c47-57d721a77220&app_pkg=&platform_cloud=%257B%2522description%2522%253A%2522Chrome%252087.0.4280.88%2520on%2520Windows%252010%252064-bit%2522%252C%2522layout%2522%253A%2522Blink%2522%252C%2522manufacturer%2522%253Anull%252C%2522name%2522%253A%2522Chrome%2522%252C%2522prerelease%2522%253Anull%252C%2522product%2522%253Anull%252C%2522ua%2522%253A%2522Mozilla%252F5.0%2520(Windows%2520NT%252010.0%253B%2520Win64%253B%2520x64)%2520AppleWebKit%252F537.36%2520(KHTML%252C%2520like%2520Gecko)%2520Chrome%252F87.0.4280.88%2520Safari%252F537.36%2522%252C%2522version%2522%253A%252287.0.4280.88%2522%252C%2522os%2522%253A%257B%2522architecture%2522%253A64%252C%2522family%2522%253A%2522Windows%2522%252C%2522version%2522%253A%252210%2522%257D%257D&preferred_lang=en&utm_source=&utm_medium=&gaCookie=&gclid=&clickid=&msclkid=&affiliateId=&offerId=&transaction_id=&aff_sub=&first_landing_page=&referrer=&download_page_referrer=&utm_campaign=download-page&exit_utm_campaign=download-page&incompatible=false"
+	$outpath = "$PSScriptRoot/BlueStacksInstaller.exe"
+	$ProgressPreference = 'SilentlyContinue'
+	Invoke-WebRequest -Uri $url -OutFile $outpath
+	Start-Process -Filepath "$PSScriptRoot/BlueStacksInstaller.exe"
+	    $wshell.Popup("Blue stacks is Installed",0,"Done",0x0)	
 })
 $installeverything.Add_Click({ 
 	Write-Host "Installing Every Application"
